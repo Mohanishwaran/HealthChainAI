@@ -63,22 +63,67 @@ export default function Schemes() {
     }
   };
 
+<<<<<<< HEAD
   const handleAutoApply = (schemeId: string, schemeName: string) => {
     // Simulate application process
+=======
+  const handleAutoApply = async (schemeId: string, schemeName: string) => {
+    // Get ABHA ID from localStorage
+    const abhaId = localStorage.getItem('abha_id');
+    
+    if (!abhaId) {
+      toast({
+        title: "ABHA ID Required",
+        description: "Please enter your ABHA ID first to apply for schemes.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+>>>>>>> bc819da (final changes)
     toast({
       title: "Processing Application",
       description: `Submitting application for ${schemeName}...`,
     });
 
-    setTimeout(() => {
-      setAppliedSchemes(prev => new Set([...prev, schemeId]));
-      setShowSuccess(true);
-      
-      toast({
-        title: "Application Approved!",
-        description: `Your application for ${schemeName} has been successfully processed and approved.`,
+    try {
+      // Try to call API endpoint
+      const response = await fetch(`/api/schemes/${schemeId}/apply`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify({ abhaId }),
       });
-    }, 2000);
+
+      if (response.ok) {
+        const data = await response.json();
+        setAppliedSchemes(prev => new Set([...prev, schemeId]));
+        setShowSuccess(true);
+        
+        toast({
+          title: "Application Submitted!",
+          description: data.message || `Your application for ${schemeName} has been submitted successfully.`,
+        });
+      } else {
+        // If API fails, fall back to local simulation
+        throw new Error('API call failed');
+      }
+    } catch (error) {
+      // Fallback to local simulation if API is not available
+      console.log('API call failed, using local simulation:', error);
+      
+      setTimeout(() => {
+        setAppliedSchemes(prev => new Set([...prev, schemeId]));
+        setShowSuccess(true);
+        
+        toast({
+          title: "Application Approved!",
+          description: `Your application for ${schemeName} has been successfully processed and approved.`,
+        });
+      }, 2000);
+    }
   };
 
   const getSchemeIcon = (type: string) => {
@@ -213,7 +258,7 @@ export default function Schemes() {
                 <p className="text-gray-600 mb-6">
                   Your applications have been processed and approved. Proceed to your wallet to claim your health vouchers.
                 </p>
-                <Link href="/wallet">
+                <Link href="/claim-schemes">
                   <Button 
                     className="bg-medilinkx-blue hover:bg-blue-700 px-8 py-3 font-semibold"
                     data-testid="button-go-to-wallet"

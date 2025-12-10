@@ -1,3 +1,4 @@
+import React from "react";
 import { Switch, Route } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -13,6 +14,10 @@ import Schemes from "@/pages/schemes";
 import ClaimSchemes from "@/pages/claim-schemes";
 import PayHospital from "@/pages/pay-hospital";
 import Receipt from "@/pages/receipt";
+<<<<<<< HEAD
+=======
+import Wallet from "@/pages/wallet";
+>>>>>>> bc819da (final changes)
 
 function Router() {
   return (
@@ -22,6 +27,10 @@ function Router() {
         <Route path="/" component={Home} />
         <Route path="/create-healthid" component={CreateHealthId} />
         <Route path="/wallet-setup" component={WalletSetup} />
+<<<<<<< HEAD
+=======
+        <Route path="/wallet" component={Wallet} />
+>>>>>>> bc819da (final changes)
         <Route path="/ai-recommendation" component={AiRecommendation} />
         <Route path="/schemes" component={Schemes} />
         <Route path="/claim-schemes" component={ClaimSchemes} />

@@ -126,9 +126,35 @@ export default function CreateHealthId() {
                     </Button>
                   </div>
                   
+<<<<<<< HEAD
                   <p className="text-sm text-gray-500">
                     Example: 12345678901234
                   </p>
+=======
+                  <p className="text-sm text-gray-500 mb-4">
+                    Example: 12345678901234
+                  </p>
+                  
+                  {/* Link to get ABHA ID from official website */}
+                  <div className="mt-4 pt-4 border-t border-gray-200">
+                    <p className="text-sm text-gray-600 mb-3">
+                      Don't have an ABHA ID?
+                    </p>
+                    <a
+                      href="https://abha.abdm.gov.in/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-medilinkx-blue hover:text-blue-700 font-semibold text-sm transition-colors"
+                    >
+                      <Shield className="h-4 w-4" />
+                      Get Your ABHA ID from Official Website
+                      <ArrowRight className="h-4 w-4" />
+                    </a>
+                    <p className="text-xs text-gray-500 mt-2">
+                      Visit the official Ayushman Bharat Digital Mission portal to create your ABHA ID
+                    </p>
+                  </div>
+>>>>>>> bc819da (final changes)
                 </div>
               </CardContent>
             </Card>

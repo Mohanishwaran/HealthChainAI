@@ -1,4 +1,10 @@
+import React from "react";
 import { QueryClient, QueryFunction } from "@tanstack/react-query";
+
+// Ensure React is available for @tanstack/react-query
+if (!React) {
+  throw new Error("React must be imported before @tanstack/react-query");
+}
 
 async function throwIfResNotOk(res: Response) {
   if (!res.ok) {
